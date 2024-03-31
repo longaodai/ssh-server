@@ -50157,16 +50157,25 @@ var __webpack_exports__ = {};
 const {Client} = __nccwpck_require__(5869);
 const core = __nccwpck_require__(2186);
 
-// Create a new SSH client instance
-const sshClient = new Client();
+const host = core.getInput('host')
+const username = core.getInput('username')
+const password = core.getInput('password')
+const privateKey = core.getInput('ssh-private-key')
+const commands = core.getInput('commands') ? core.getInput('commands') : 'ls -la'
 
 // Configure the connection parameters
-const connectionParams = {
-    host: core.getInput('host'),
-    username: core.getInput('username'),
-    password: core.getInput('password'),
+let connectionParams = {
+    host: host,
+    username: username,
 };
-let commands = core.getInput('commands')
+if (password) {
+    connectionParams.password = password
+} else {
+    connectionParams.privateKey = privateKey
+}
+
+// Create a new SSH client instance
+const sshClient = new Client();
 sshClient.on('ready', () => {
     console.log('Connected via SSH!');
     execute()
@@ -50176,8 +50185,17 @@ sshClient.on('error', (err) => {
 });
 
 function execute() {
+    if (!commands) {
+        console.log('Connect SSH closed');
+        sshClient.end();
+        return
+    }
+
     sshClient.exec(commands, (err, stream) => {
-        if (err) throw err;
+        if (err) {
+            sshClient.end();
+            throw err;
+        }
         stream
             .on('close', (code, signal) => {
                 console.log('Command execution closed');
