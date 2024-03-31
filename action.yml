@@ -13,7 +13,9 @@ inputs:
     required: true
   password:
     description: 'SSH password'
-    required: true
+  ssh-private-key:
+    description: 'SSH private key'
+    required: false
   commands:
     description: 'Commands'
     required: false
