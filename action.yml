@@ -1,0 +1,26 @@
+name: 'Long Ao Dai - SSH Action'
+description: 'Connect to a remote server via SSH and execute commands'
+inputs:
+  host:
+    description: 'Hostname or IP address of the remote server'
+    required: true
+  port:
+    description: 'SSH port of the remote server (default: 22)'
+    required: false
+    default: '22'
+  username:
+    description: 'SSH username'
+    required: true
+  password:
+    description: 'SSH password'
+    required: true
+  commands:
+    description: 'Commands'
+    required: false
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+
+branding:
+  icon: loader
+  color: 'yellow'
