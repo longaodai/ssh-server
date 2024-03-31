@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: SSH Server
-        uses: longaodai/ssh-server@v1.0.0
+        uses: longaodai/ssh-server@v2.0.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: SSH Server
-        uses: longaodai/ssh-server@v1.0.0
+        uses: longaodai/ssh-server@v2.0.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
