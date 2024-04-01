@@ -78,3 +78,10 @@ Make sure to add the following secrets to your repository:
 `PASSWORD`: The password used for SSH authentication. (Required if you want to connect by password)
 
 `SSHKEY`: The private key used for SSH authentication. (Required if you want to connect by private key)
+
+## Contributing
+We would love for you to contribute to `longaodai/ssh-server`, pull requests are welcome !
+
+
+## License
+The scripts and documentation in this project are released under the [MIT License](https://github.com/longaodai/ssh-server/blob/main/LICENSE)
